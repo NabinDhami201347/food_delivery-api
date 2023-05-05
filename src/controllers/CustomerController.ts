@@ -16,7 +16,7 @@ import {
   onRequestOTP,
   validatePassword,
 } from "../utility";
-import { Customer, Food, Order } from "../models";
+import { Customer, Food, Offer, Order } from "../models";
 
 export const CustomerSignUp = async (req: Request, res: Response) => {
   const customerInputs = plainToInstance(CreateCustomerInput, req.body);
@@ -361,4 +361,22 @@ export const DeleteCart = async (req: Request, res: Response) => {
     }
   }
   return res.status(400).json({ message: "cart is Already Empty!" });
+};
+
+/* ------------------- Offer Section --------------------- */
+export const VerifyOffer = async (req: Request, res: Response) => {
+  const offerId = req.params.id;
+  const customer = req.user;
+  if (customer) {
+    const appliedOffer = await Offer.findById(offerId);
+
+    if (appliedOffer) {
+      if (appliedOffer.isActive) {
+        return res
+          .status(200)
+          .json({ message: "Offer is Valid", offer: appliedOffer });
+      }
+    }
+  }
+  return res.status(400).json({ msg: "Offer is Not Valid" });
 };

@@ -12,6 +12,7 @@ import {
   GetOrderById,
   GetOrders,
   RequestOtp,
+  VerifyOffer,
 } from "../controllers/CustomerController";
 import { Authenticate } from "../middlewares";
 
@@ -38,5 +39,8 @@ router.get("/order/:id", GetOrderById);
 router.post("/cart", AddToCart);
 router.get("/cart", GetCart);
 router.delete("/cart", DeleteCart);
+
+/* ------------------- Apply Offers--------------------- */
+router.get("/offer/verify/:id", VerifyOffer);
 
 export { router as CustomerRoute };

@@ -1,9 +1,15 @@
 import { Request, Response } from "express";
-import { CreateFoodInput, EditVandorInput, VandorLoginInput } from "../dto";
+import {
+  CreateFoodInput,
+  CreateOfferInputs,
+  EditVandorInput,
+  VandorLoginInput,
+} from "../dto";
 import { findVandor } from "./AdminController";
 import { generateSignature, validatePassword } from "../utility";
-import { Food, Order } from "../models";
+import { Food, Offer, Order } from "../models";
 
+/* ------------------- Vandors Section --------------------- */
 export const VandorLogin = async (req: Request, res: Response) => {
   const { email, password } = <VandorLoginInput>req.body;
 
@@ -29,7 +35,6 @@ export const VandorLogin = async (req: Request, res: Response) => {
 
   return res.json({ message: "Opps, Invalid Credentials" });
 };
-
 export const GetVandorProfile = async (req: Request, res: Response) => {
   const user = req.user;
   if (user) {
@@ -38,7 +43,6 @@ export const GetVandorProfile = async (req: Request, res: Response) => {
   }
   return res.json({ message: "Vandor not found" });
 };
-
 export const UpdateVandorProfile = async (req: Request, res: Response) => {
   const user = req.user;
   const { name, phone, address, foodType } = <EditVandorInput>req.body;
@@ -56,7 +60,6 @@ export const UpdateVandorProfile = async (req: Request, res: Response) => {
   }
   return res.json({ message: "Vandor not found" });
 };
-
 export const UpdateVandorService = async (req: Request, res: Response) => {
   const user = req.user;
   if (user) {
@@ -69,7 +72,6 @@ export const UpdateVandorService = async (req: Request, res: Response) => {
   }
   return res.json({ message: "Vandor not found" });
 };
-
 export const UpdateVendorCoverImage = async (req: Request, res: Response) => {
   const user = req.user;
   if (user) {
@@ -85,6 +87,7 @@ export const UpdateVendorCoverImage = async (req: Request, res: Response) => {
   return res.json({ message: "Unable to Update vendor profile " });
 };
 
+/* ------------------- Foods Section --------------------- */
 export const AddFood = async (req: Request, res: Response) => {
   const user = req.user;
   const { name, description, category, foodType, readyTime, price } = <
@@ -115,7 +118,6 @@ export const AddFood = async (req: Request, res: Response) => {
   }
   return res.json({ message: "Unable to Update vendor profile " });
 };
-
 export const GetFoods = async (req: Request, res: Response) => {
   const user = req.user;
   if (user) {
@@ -128,6 +130,7 @@ export const GetFoods = async (req: Request, res: Response) => {
   return res.json({ message: "Foods not found!" });
 };
 
+/* ------------------- Orders Section --------------------- */
 export const GetCurrentOrders = async (req: Request, res: Response) => {
   const user = req.user;
   if (user) {
@@ -141,7 +144,6 @@ export const GetCurrentOrders = async (req: Request, res: Response) => {
 
   return res.json({ message: "Orders Not found" });
 };
-
 export const GetOrderDetails = async (req: Request, res: Response) => {
   const orderId = req.params.id;
   if (orderId) {
@@ -152,7 +154,6 @@ export const GetOrderDetails = async (req: Request, res: Response) => {
   }
   return res.json({ message: "Order Not found" });
 };
-
 export const ProcessOrder = async (req: Request, res: Response) => {
   const orderId = req.params.id;
   const { status, remarks, time } = req.body;
@@ -174,4 +175,122 @@ export const ProcessOrder = async (req: Request, res: Response) => {
     }
   }
   return res.json({ message: "Unable to process order" });
+};
+
+/* ------------------- Offers Section --------------------- */
+export const GetOffers = async (req: Request, res: Response) => {
+  const user = req.user;
+  if (user) {
+    let currentOffer = Array();
+    const offers = await Offer.find().populate("vandors");
+
+    if (offers) {
+      offers.map((item) => {
+        if (item.vandors) {
+          item.vandors.map((vandor) => {
+            if (vandor._id.toString() === user._id) {
+              currentOffer.push(item);
+            }
+          });
+        }
+
+        if (item.offerType === "GENERIC") {
+          currentOffer.push(item);
+        }
+      });
+    }
+    return res.status(200).json(currentOffer);
+  }
+
+  return res.json({ message: "Offers Not available" });
+};
+export const AddOffer = async (req: Request, res: Response) => {
+  const user = req.user;
+  if (user) {
+    const {
+      title,
+      description,
+      offerType,
+      offerAmount,
+      pincode,
+      promocode,
+      promoType,
+      startValidity,
+      endValidity,
+      bank,
+      bins,
+      minValue,
+      isActive,
+    } = <CreateOfferInputs>req.body;
+
+    const vandor = await findVandor(user._id);
+    if (vandor) {
+      const offer = await Offer.create({
+        title,
+        description,
+        offerType,
+        offerAmount,
+        pincode,
+        promoType,
+        promocode,
+        bins,
+        startValidity,
+        endValidity,
+        bank,
+        isActive,
+        minValue,
+        vandors: [vandor],
+      });
+      return res.status(200).json(offer);
+    }
+  }
+  return res.json({ message: "Unable to add Offer!" });
+};
+export const EditOffer = async (req: Request, res: Response) => {
+  const user = req.user;
+  const offerId = req.params.id;
+
+  if (user) {
+    const {
+      title,
+      description,
+      offerType,
+      offerAmount,
+      pincode,
+      promocode,
+      promoType,
+      startValidity,
+      endValidity,
+      bank,
+      bins,
+      minValue,
+      isActive,
+    } = <CreateOfferInputs>req.body;
+
+    const currentOffer = await Offer.findById(offerId);
+
+    if (currentOffer) {
+      const vendor = await findVandor(user._id);
+
+      if (vendor) {
+        (currentOffer.title = title),
+          (currentOffer.description = description),
+          (currentOffer.offerType = offerType),
+          (currentOffer.offerAmount = offerAmount),
+          (currentOffer.pincode = pincode),
+          (currentOffer.promoType = promoType),
+          (currentOffer.startValidity = startValidity),
+          (currentOffer.endValidity = endValidity),
+          (currentOffer.bank = bank),
+          (currentOffer.isActive = isActive),
+          (currentOffer.minValue = minValue);
+
+        const result = await currentOffer.save();
+
+        return res.status(200).json(result);
+      }
+    }
+  }
+
+  return res.json({ message: "Unable to add Offer!" });
 };

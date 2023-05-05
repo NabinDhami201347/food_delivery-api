@@ -4,8 +4,11 @@ import path from "path";
 
 import {
   AddFood,
+  AddOffer,
+  EditOffer,
   GetCurrentOrders,
   GetFoods,
+  GetOffers,
   GetOrderDetails,
   GetVandorProfile,
   ProcessOrder,
@@ -15,7 +18,6 @@ import {
   VandorLogin,
 } from "../controllers";
 import { Authenticate } from "../middlewares";
-import { GetOrders } from "../controllers/CustomerController";
 
 const router = express.Router();
 
@@ -32,6 +34,7 @@ const imageStorage = multer.diskStorage({
 });
 const images = multer({ storage: imageStorage }).array("images", 10);
 
+/* ------------------- Vandors --------------------- */
 router.post("/login", VandorLogin);
 
 router.use(Authenticate);
@@ -40,11 +43,18 @@ router.patch("/profile", UpdateVandorProfile);
 router.patch("/service", UpdateVandorService);
 router.patch("/coverimage", images, UpdateVendorCoverImage);
 
+/* ------------------- Foods --------------------- */
 router.post("/food", images, AddFood);
 router.get("/food", GetFoods);
 
+/* ------------------- Orders --------------------- */
 router.get("/orders", GetCurrentOrders);
 router.put("/order/:id/process", ProcessOrder);
 router.get("/order/:id", GetOrderDetails);
+
+/* ------------------- Offers --------------------- */
+router.post("/offer", AddOffer);
+router.get("/offers", GetOffers);
+router.put("/offer/:id", EditOffer);
 
 export { router as VandorRoute };
