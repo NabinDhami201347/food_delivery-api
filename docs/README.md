@@ -155,11 +155,14 @@ export { router as AdminRoute };
 const router = express.Router();
 
 const imageStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "images");
+  destination(req, file, cb) {
+    cb(null, path.join(__dirname, "../../images"));
   },
-  filename: function (req, file, cb) {
-    cb(null, new Date().toISOString() + "_" + file.originalname);
+  filename(req, file, cb) {
+    cb(
+      null,
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    );
   },
 });
 
@@ -188,9 +191,7 @@ export const UpdateVendorCoverImage = async (req: Request, res: Response) => {
 ```ts
 import path from "path";
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-const imagePath = path.join(__dirname, "../images");
-app.use("/images", express.static(imagePath));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/images", express.static(path.join(__dirname, "images")));
 ```
