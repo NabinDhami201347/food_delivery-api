@@ -4,14 +4,18 @@ import path from "path";
 
 import {
   AddFood,
+  GetCurrentOrders,
   GetFoods,
+  GetOrderDetails,
   GetVandorProfile,
+  ProcessOrder,
   UpdateVandorProfile,
   UpdateVandorService,
   UpdateVendorCoverImage,
   VandorLogin,
 } from "../controllers";
 import { Authenticate } from "../middlewares";
+import { GetOrders } from "../controllers/CustomerController";
 
 const router = express.Router();
 
@@ -38,5 +42,9 @@ router.patch("/coverimage", images, UpdateVendorCoverImage);
 
 router.post("/food", images, AddFood);
 router.get("/food", GetFoods);
+
+router.get("/orders", GetCurrentOrders);
+router.put("/order/:id/process", ProcessOrder);
+router.get("/order/:id", GetOrderDetails);
 
 export { router as VandorRoute };

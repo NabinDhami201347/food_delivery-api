@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { CreateFoodInput, EditVandorInput, VandorLoginInput } from "../dto";
 import { findVandor } from "./AdminController";
 import { generateSignature, validatePassword } from "../utility";
-import { Food } from "../models";
+import { Food, Order } from "../models";
 
 export const VandorLogin = async (req: Request, res: Response) => {
   const { email, password } = <VandorLoginInput>req.body;
@@ -15,7 +15,7 @@ export const VandorLogin = async (req: Request, res: Response) => {
       existing.salt
     );
     if (validation) {
-      const signature = generateSignature({
+      const signature = await generateSignature({
         _id: existing._id,
         email: existing.email,
         name: existing.name,
@@ -126,4 +126,52 @@ export const GetFoods = async (req: Request, res: Response) => {
     }
   }
   return res.json({ message: "Foods not found!" });
+};
+
+export const GetCurrentOrders = async (req: Request, res: Response) => {
+  const user = req.user;
+  if (user) {
+    const orders = await Order.find({ vendorId: user._id }).populate(
+      "items.food"
+    );
+    if (orders) {
+      return res.status(200).json(orders);
+    }
+  }
+
+  return res.json({ message: "Orders Not found" });
+};
+
+export const GetOrderDetails = async (req: Request, res: Response) => {
+  const orderId = req.params.id;
+  if (orderId) {
+    const order = await Order.findById(orderId).populate("items.food");
+    if (order != null) {
+      return res.status(200).json(order);
+    }
+  }
+  return res.json({ message: "Order Not found" });
+};
+
+export const ProcessOrder = async (req: Request, res: Response) => {
+  const orderId = req.params.id;
+  const { status, remarks, time } = req.body;
+  if (orderId) {
+    const order = await Order.findById(orderId).populate({
+      path: "items.food",
+    });
+    if (order) {
+      order.orderStatus = status;
+      order.remarks = remarks;
+      if (time) {
+        order.readyTime = time;
+      }
+
+      const orderResult = await order.save();
+      if (orderResult != null) {
+        return res.status(200).json(orderResult);
+      }
+    }
+  }
+  return res.json({ message: "Unable to process order" });
 };
