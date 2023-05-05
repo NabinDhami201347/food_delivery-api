@@ -1,26 +1,17 @@
 import express from "express";
-import path from "path";
-import mongoose from "mongoose";
 
-import { AdminRoute, VandorRoute } from "./routes";
-import { MONGO_URI } from "./config";
-import bodyParser from "body-parser";
+import database from "./services/database";
+import server from "./services/server";
 
-const app = express();
+const startServer = async () => {
+  const app = express();
+  await database();
+  await server(app);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/images", express.static(path.join(__dirname, "images")));
+  app.listen(8000, () => {
+    console.clear();
+    console.log("http://localhost:8000");
+  });
+};
 
-app.use("/admin", AdminRoute);
-app.use("/vandor", VandorRoute);
-
-mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log("Database connected"))
-  .catch((err) => console.log(err));
-
-app.listen(8000, () => {
-  console.clear();
-  console.log("http://localhost:8000");
-});
+startServer();
