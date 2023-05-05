@@ -1,33 +1,34 @@
 import express from "express";
 import {
+  CreateOrder,
   CustomerLogin,
   CustomerSignUp,
   CustomerVerify,
   EditCustomerProfile,
   GetCustomerProfile,
+  GetOrderById,
+  GetOrders,
   RequestOtp,
 } from "../controllers/CustomerController";
 import { Authenticate } from "../middlewares";
 
 const router = express.Router();
 
-/* ------------------- Create Customer --------------------- */
+/* ------------------- Customer --------------------- */
 router.post("/signup", CustomerSignUp);
-
-/* ------------------- Login Customer --------------------- */
 router.post("/login", CustomerLogin);
 
-/* ------------------- Authentication --------------------- */
 router.use(Authenticate);
-
-/* ------------------- Verify Customer Account --------------------- */
 router.patch("/verify", CustomerVerify);
-
-/* ------------------- OTP / request OTP --------------------- */
 router.get("/otp", RequestOtp);
 
 /* ------------------- Profile --------------------- */
 router.get("/profile", GetCustomerProfile);
 router.patch("/profile", EditCustomerProfile);
+
+/* ------------------- Orders --------------------- */
+router.post("/create-order", CreateOrder);
+router.get("/orders", GetOrders);
+router.get("/order/:id", GetOrderById);
 
 export { router as CustomerRoute };
