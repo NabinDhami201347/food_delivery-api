@@ -16,7 +16,7 @@ import {
   onRequestOTP,
   validatePassword,
 } from "../utility";
-import { Customer, Food, Offer, Order } from "../models";
+import { Customer, Food, Offer, Order, Transaction } from "../models";
 
 export const CustomerSignUp = async (req: Request, res: Response) => {
   const customerInputs = plainToInstance(CreateCustomerInput, req.body);
@@ -379,4 +379,33 @@ export const VerifyOffer = async (req: Request, res: Response) => {
     }
   }
   return res.status(400).json({ msg: "Offer is Not Valid" });
+};
+
+/* ------------------- Payment Section --------------------- */
+export const CreatePayment = async (req: Request, res: Response) => {
+  const customer = req.user;
+  const { amount, paymentMode, offerId } = req.body;
+  let payableAmount = Number(amount);
+
+  if (offerId) {
+    const appliedOffer = await Offer.findById(offerId);
+
+    if (appliedOffer?.isActive) {
+      payableAmount = payableAmount - appliedOffer?.offerAmount;
+    }
+  }
+  // perform payment gateway charge api
+
+  // create record on transaction
+  const transaction = await Transaction.create({
+    customer: customer?._id,
+    vendorId: "",
+    orderId: "",
+    orderValue: payableAmount,
+    offerUsed: offerId || "NA",
+    status: "OPEN",
+    paymentMode: paymentMode,
+    paymentResponse: "Payment is cash on Delivery",
+  });
+  return res.status(200).json(transaction);
 };

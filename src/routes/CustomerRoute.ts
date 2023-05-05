@@ -2,6 +2,7 @@ import express from "express";
 import {
   AddToCart,
   CreateOrder,
+  CreatePayment,
   CustomerLogin,
   CustomerSignUp,
   CustomerVerify,
@@ -13,7 +14,7 @@ import {
   GetOrders,
   RequestOtp,
   VerifyOffer,
-} from "../controllers/CustomerController";
+} from "../controllers";
 import { Authenticate } from "../middlewares";
 
 const router = express.Router();
@@ -42,5 +43,8 @@ router.delete("/cart", DeleteCart);
 
 /* ------------------- Apply Offers--------------------- */
 router.get("/offer/verify/:id", VerifyOffer);
+
+/* ------------------- Payment --------------------- */
+router.post("/create-payment", CreatePayment);
 
 export { router as CustomerRoute };
