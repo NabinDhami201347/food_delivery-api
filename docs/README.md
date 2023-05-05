@@ -148,3 +148,49 @@ router.get("/vandor/:id", GetVandor);
 
 export { router as AdminRoute };
 ```
+
+## Images
+
+```ts
+const router = express.Router();
+
+const imageStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, new Date().toISOString() + "_" + file.originalname);
+  },
+});
+
+const images = multer({ storage: imageStorage }).array("images", 10);
+
+router.post("/food", images, AddFood);
+```
+
+```ts
+export const UpdateVendorCoverImage = async (req: Request, res: Response) => {
+  const user = req.user;
+  if (user) {
+    const vendor = await FindVendor(user._id);
+    if (vendor !== null) {
+      const files = req.files as [Express.Multer.File];
+      const images = files.map((file: Express.Multer.File) => file.filename);
+      vendor.coverImages.push(...images);
+      const saveResult = await vendor.save();
+      return res.json(saveResult);
+    }
+  }
+  return res.json({ message: "Unable to Update vendor profile" });
+};
+```
+
+```ts
+import path from "path";
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const imagePath = path.join(__dirname, "../images");
+app.use("/images", express.static(imagePath));
+```
