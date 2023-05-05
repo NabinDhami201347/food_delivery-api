@@ -195,3 +195,41 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "images")));
 ```
+
+## Shopping
+
+```ts
+export const GetFoodsIn30Min = async (req: Request, res: Response) => {
+  const pincode = req.params.pincode;
+  const result = await Vandor.find({ pincode: pincode, serviceAvailable: true })
+    .sort([["rating", "descending"]])
+    .populate("foods");
+
+  if (result.length > 0) {
+    let foodResult: any = [];
+    result.map((vanVandor) => {
+      const foods = vanVandor.foods as [FoodDoc];
+      foodResult.push(...foods.filter((food) => food.readyTime <= 30));
+    });
+    return res.status(200).json(foodResult);
+  }
+  return res.status(404).json({ msg: "data Not found!" });
+};
+```
+
+```ts
+export const SearchFoods = async (req: Request, res: Response) => {
+  const pincode = req.params.pincode;
+  const result = await Vandor.find({
+    pincode: pincode,
+    serviceAvailable: true,
+  }).populate("foods");
+
+  if (result.length > 0) {
+    let foodResult: any = [];
+    result.map((item) => foodResult.push(...item.foods));
+    return res.status(200).json(foodResult);
+  }
+  return res.status(404).json({ msg: "data Not found!" });
+};
+```
