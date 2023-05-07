@@ -62,10 +62,16 @@ export const UpdateVandorProfile = async (req: Request, res: Response) => {
 };
 export const UpdateVandorService = async (req: Request, res: Response) => {
   const user = req.user;
+  const { lat, lng } = req.body;
+
   if (user) {
     const existing = await findVandor(user._id);
     if (existing !== null) {
       existing.serviceAvailable = !existing.serviceAvailable;
+      if (lat && lng) {
+        existing.lat = lat;
+        existing.lng = lng;
+      }
       const savedResult = await existing.save();
       return res.json(savedResult);
     }

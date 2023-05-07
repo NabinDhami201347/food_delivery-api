@@ -4,6 +4,7 @@ import path from "path";
 import {
   AdminRoute,
   CustomerRoute,
+  DeliveryRoute,
   ShoppingRoute,
   VandorRoute,
 } from "../routes";
@@ -17,6 +18,7 @@ export default async (app: Application) => {
   app.use("/admin", AdminRoute);
   app.use("/vandor", VandorRoute);
   app.use("/customer", CustomerRoute);
+  app.use("/delivery", DeliveryRoute);
   app.use(ShoppingRoute);
 
   return app;

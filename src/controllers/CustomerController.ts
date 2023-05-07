@@ -17,7 +17,15 @@ import {
   onRequestOTP,
   validatePassword,
 } from "../utility";
-import { Customer, Food, Offer, Order, Transaction, Vandor } from "../models";
+import {
+  Customer,
+  DeliveryUser,
+  Food,
+  Offer,
+  Order,
+  Transaction,
+  Vandor,
+} from "../models";
 
 export const CustomerSignUp = async (req: Request, res: Response) => {
   const customerInputs = plainToInstance(CreateCustomerInput, req.body);
@@ -277,6 +285,30 @@ export const DeleteCart = async (req: Request, res: Response) => {
     }
   }
   return res.status(400).json({ message: "cart is Already Empty!" });
+};
+
+/* ------------------- Delivery Notification --------------------- */
+const assignOrderForDelivery = async (orderId: string, vandorId: string) => {
+  const vandor = await Vandor.findById(vandorId);
+  if (vandor) {
+    const areaCode = vandor.pincode;
+
+    //find the available Delivery person
+    const deliveryPerson = await DeliveryUser.find({
+      pincode: areaCode,
+      verified: true,
+      isAvailable: true,
+    });
+    if (deliveryPerson) {
+      const currentOrder = await Order.findById(orderId);
+      if (currentOrder) {
+        currentOrder.deliveryId = deliveryPerson[0]._id;
+        await currentOrder.save();
+
+        //Notify to vendor for received new order firebase push notification
+      }
+    }
+  }
 };
 
 /* ------------------- Orders Section --------------------- */
