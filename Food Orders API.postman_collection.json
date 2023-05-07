@@ -1,0 +1,1558 @@
+{
+	"info": {
+		"_postman_id": "6b8ecabc-b4d7-4594-8a94-b37bc20c3452",
+		"name": "Food Orders API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19602532"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Create Vendor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Fourth Resturant\",\n    \"foodType\":[\"non-veg\",\"veg\",\"all\"],\n    \"pincode\":\"201341\",\n    \"phone\":\"9862671425\",\n    \"ownerName\":\"Suman Dhami\",\n    \"email\":\"suman13@gmail.com\",\n    \"password\":\"201347\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/admin/vandor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"vandor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vendors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/vandors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"vandors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get VendorById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/vandor/64544954bb500db81cbbb4a7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"vandor",
+								"64544954bb500db81cbbb4a7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Delivery Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzdkODRhMTI4NDEyNTU4MGM5M2E0OWIiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJuYW1lIjoiQ3JlYXRpdmUgTmVwYWwgUmVzdHVyYW50IiwiaWF0IjoxNjY5ODU3NjQ0LCJleHAiOjE2Njk5NDQwNDR9.WC1ZLoGnGKH9OaylxvmFve4Tkt8iHCVKKACbz3wMTNo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/delivery/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"delivery",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Delivery Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzdkODRhMTI4NDEyNTU4MGM5M2E0OWIiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJuYW1lIjoiQ3JlYXRpdmUgTmVwYWwgUmVzdHVyYW50IiwiaWF0IjoxNjY5ODU3NjQ0LCJleHAiOjE2Njk5NDQwNDR9.WC1ZLoGnGKH9OaylxvmFve4Tkt8iHCVKKACbz3wMTNo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\" :\"6387fe9d5d730a2175015bdc\", \n    \"status\" :true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/admin/delivery/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"delivery",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzdkODRhMTI4NDEyNTU4MGM5M2E0OWIiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJuYW1lIjoiQ3JlYXRpdmUgTmVwYWwgUmVzdHVyYW50IiwiaWF0IjoxNjY5ODU3NjQ0LCJleHAiOjE2Njk5NDQwNDR9.WC1ZLoGnGKH9OaylxvmFve4Tkt8iHCVKKACbz3wMTNo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions ById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzdkODRhMTI4NDEyNTU4MGM5M2E0OWIiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJuYW1lIjoiQ3JlYXRpdmUgTmVwYWwgUmVzdHVyYW50IiwiaWF0IjoxNjY5ODU3NjQ0LCJleHAiOjE2Njk5NDQwNDR9.WC1ZLoGnGKH9OaylxvmFve4Tkt8iHCVKKACbz3wMTNo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/transaction/6454b313b3590b58fd9c7be7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"transaction",
+								"6454b313b3590b58fd9c7be7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vandor",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"suman13@gmail.com\",\n    \"password\":\"201347\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkNyZWF0aXZlIE5lcGFsIFJlc3R1cmFudCIsImZvb2RUeXBlIjpbImNoaWNrZW4iLCJ2ZWdldHJpYW4iLCJtdXR0b24iXSwiaWF0IjoxNjgzNDIyOTY3LCJleHAiOjE2ODM0MjY1Njd9.krvIft0oGato-KVnaBD7vsCH3WAfJRCk4-_t9pww2XI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/vandor/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"foodType\":[\"chicken\",\"vegetrian\",\"mutton\"],\n    \"name\":\"Creative Nepal Resturant\",\n    \"address\":\"Malikarjun\",\n    \"phone\":\"974956845897\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Service",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lat\": 27.700769,\r\n    \"lng\":85.300140\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/service",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"service"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cover Image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "images",
+											"type": "file",
+											"src": "/C:/Users/NITRO5/Pictures/Saved Pictures/5.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/coverimage",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"coverimage"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Offers",
+					"item": [
+						{
+							"name": "Add Offer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"50% off on sunday\",\r\n    \"description\":\"here is the doscount\",\r\n    \"offerType\":\"VENDOR\",\r\n    \"offerAmount\":100,\r\n    \"pincode\":\"40050\",\r\n    \"promoCode\":\"OFFER10\",\r\n    \"promoType\":\"ALL\",\r\n    \"startValidity\":\"\",\r\n    \"endValidity\":\"\",\r\n    \"bank\":\"\",\r\n    \"bins\":\"\",\r\n    \"isActive\":true,\r\n    \"minValue\":250\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/offer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"offer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Offers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/vandor/offers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"offers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Offer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0NGU5NWE4MDA0NTVjN2E0NWIwYzMiLCJlbWFpbCI6InN1bWFuQGdtYWlsLmNvbSIsIm5hbWUiOiJDcmVhdGl2ZSBOZXBhbCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJjaGlja2VuIiwidmVnZXRyaWFuIiwibXV0dG9uIl0sImlhdCI6MTY4MzI3MDM1MCwiZXhwIjoxNjgzMjczOTUwfQ.D3vyPnneiR9mf6U93TnsvbOWzcom1IheJsDCiBVZQ4Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"50% off monday\",\r\n    \"description\":\"There is the doscount\",\r\n    \"offerType\":\"VENDOR\",\r\n    \"offerAmount\":200,\r\n    \"pincode\":\"40050\",\r\n    \"promoCode\":\"OFFER10\",\r\n    \"promoType\":\"ALL\",\r\n    \"startValidity\":\"\",\r\n    \"endValidity\":\"\",\r\n    \"bank\":\"\",\r\n    \"bins\":\"\",\r\n    \"isActive\":true,\r\n    \"minValue\":250\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/offer/6454aaf0c3defc2d40e156cc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"offer",
+										"6454aaf0c3defc2d40e156cc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Offer",
+							"request": {
+								"method": "DELETE",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Get Orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/vandor/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Order Process",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0NGU5NWE4MDA0NTVjN2E0NWIwYzMiLCJlbWFpbCI6InN1bWFuQGdtYWlsLmNvbSIsIm5hbWUiOiJDcmVhdGl2ZSBOZXBhbCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJjaGlja2VuIiwidmVnZXRyaWFuIiwibXV0dG9uIl0sImlhdCI6MTY4MzI2MTExNywiZXhwIjoxNjgzMjY0NzE3fQ.zLrk4QiuUwZgXydTHCRV9FKOoGxUjFhg0iwadGKWHes",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\":\"ACCEPT\",\n    \"remarks\":\"Within a minute\",\n    \"time\":\"30\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/order/6454887954be91136ebfe910/process",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"order",
+										"6454887954be91136ebfe910",
+										"process"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Order Details",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0NGU5NWE4MDA0NTVjN2E0NWIwYzMiLCJlbWFpbCI6InN1bWFuQGdtYWlsLmNvbSIsIm5hbWUiOiJDcmVhdGl2ZSBOZXBhbCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJjaGlja2VuIiwidmVnZXRyaWFuIiwibXV0dG9uIl0sImlhdCI6MTY4MzI2MTExNywiZXhwIjoxNjgzMjY0NzE3fQ.zLrk4QiuUwZgXydTHCRV9FKOoGxUjFhg0iwadGKWHes",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/vandor/order/6454887954be91136ebfe910",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"order",
+										"6454887954be91136ebfe910"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Foods",
+					"item": [
+						{
+							"name": "Add Food",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "chowmein",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "omlet pasta",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "breakfast",
+											"type": "text"
+										},
+										{
+											"key": "foodType",
+											"value": "veg",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "70",
+											"type": "text"
+										},
+										{
+											"key": "readyTime",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "images",
+											"type": "file",
+											"src": [
+												"/C:/Users/NITRO5/Pictures/Saved Pictures/5.jpg",
+												"/C:/Users/NITRO5/Pictures/Saved Pictures/6.jpg",
+												"/C:/Users/NITRO5/Pictures/Saved Pictures/Walpaper.jpg"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8000/vandor/food",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"food"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Foods",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2ZjlhYWZkMDgxMjQ2MjllNmM5NDgiLCJlbWFpbCI6InN1bWFuMTNAZ21haWwuY29tIiwibmFtZSI6IkZvdXJ0aCBSZXN0dXJhbnQiLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIiwiYWxsIl0sImlhdCI6MTY4MzQyMTYyOCwiZXhwIjoxNjgzNDI1MjI4fQ.F7VHgTFTtJE9bu0Gt12vvexzbrrgVjSnTGWKHMrJ7Nk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/vandor/food",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"vandor",
+										"food"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Shopping",
+			"item": [
+				{
+					"name": "Foods  Avaliablity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/201341",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"201341"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods  Top Resturants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/top-restaurant/201341",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"top-restaurant",
+								"201341"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods  in 30 mins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/foods-in-30-min/201341",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"foods-in-30-min",
+								"201341"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods  Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/search/201341",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"search",
+								"201341"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods  Resturants ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/restaurant/64544e95a800455c7a45b0c3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"restaurant",
+								"64544e95a800455c7a45b0c3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Food Offers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/offers/40050",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"offers",
+								"40050"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "Signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"nabindhami14@gmail.com\",\n    \"password\":\"201347\",\n    \"phone\":\"9840034689\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzNDIzMjU0LCJleHAiOjE2ODM0MjY4NTR9.w2lDjV2Ouv4JTPGOVuKXTSj9WNZBnprmAloS41JFDKA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otp\":\"443406\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/verify",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"verify"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg1NTdhMjI4ZDFhMTIxNjU1MWRhZWEiLCJlbWFpbCI6ImFwaWxkaGFtaUBnYW1pbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY5NjgzMTUzLCJleHAiOjE2Njk3Njk1NTN9.ZiaUV53u58AifHBsieRf9J27uA2-Eubt6H5Lwty8NB8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"nabindhami14@gmail.com\",\n    \"password\":\"201347\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OTP",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzNDIzMjU0LCJleHAiOjE2ODM0MjY4NTR9.w2lDjV2Ouv4JTPGOVuKXTSj9WNZBnprmAloS41JFDKA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/otp",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"otp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzMjU4NTUwLCJleHAiOjE2ODMyNjIxNTB9.xqyKP53MBLXrxC4WkQHQQTEbKgwFykOLqAkl44aOe5c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzMjUzODUxLCJleHAiOjE2ODMyNTc0NTF9.jylefQetj6anmj24n8DpzYRJ-NT8hic1XpSd58LED1E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\":\"Santosh\",\n    \"lastName\":\"Tiwari\",\n    \"address\":\"Gorkha\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Create Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzNDIxOTU4LCJleHAiOjE2ODM0MjU1NTh9.o8erzmexzGApFPksBEqwsxLT-8O20zuCui4LiIrbQ4A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // { \"_id\" :\"64544f0aa800455c7a45b0c7\", \"unit\":3},\n    // { \"_id\" :\"64544f50a800455c7a45b0cc\",\"unit\":1},\n    // {\"_id\":\"64545260725ba5c0716e9657\", \"unit\":10}\n    \"txnId\":\"6456fc2c7a49afd2da340c8a\",\n    \"amount\":1250,\n    \"items\":[\n        { \"_id\" :\"6456faaffd08124629e6c962\",\"unit\":1},\n        {\"_id\":\"6456fa94fd08124629e6c959\", \"unit\":10}\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/create-order",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"create-order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View Orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzMjU4NTUwLCJleHAiOjE2ODMyNjIxNTB9.xqyKP53MBLXrxC4WkQHQQTEbKgwFykOLqAkl44aOe5c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Order ById",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzMjU4NTUwLCJleHAiOjE2ODMyNjIxNTB9.xqyKP53MBLXrxC4WkQHQQTEbKgwFykOLqAkl44aOe5c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/order/64547ee1582caf2db97a6f14",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"order",
+										"64547ee1582caf2db97a6f14"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add to Cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzNDIxOTU4LCJleHAiOjE2ODM0MjU1NTh9.o8erzmexzGApFPksBEqwsxLT-8O20zuCui4LiIrbQ4A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"_id\": \"6456faaffd08124629e6c962\",\n     \"unit\":10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzNDIxOTU4LCJleHAiOjE2ODM0MjU1NTh9.o8erzmexzGApFPksBEqwsxLT-8O20zuCui4LiIrbQ4A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzMjU4NTUwLCJleHAiOjE2ODMyNjIxNTB9.xqyKP53MBLXrxC4WkQHQQTEbKgwFykOLqAkl44aOe5c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Offers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzNDIxOTU4LCJleHAiOjE2ODM0MjU1NTh9.o8erzmexzGApFPksBEqwsxLT-8O20zuCui4LiIrbQ4A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/offer/verify/6454aaf0c3defc2d40e156cc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"offer",
+										"verify",
+										"6454aaf0c3defc2d40e156cc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Payment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU0Njg2NmFmMWJmM2U5Nzk2YzNmODYiLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjgzNDIxOTU4LCJleHAiOjE2ODM0MjU1NTh9.o8erzmexzGApFPksBEqwsxLT-8O20zuCui4LiIrbQ4A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"offerId\":\"6454aaf0c3defc2d40e156cc\",\n    \"amount\":\"12500\",\n    \"paymentMode\":\"CASH\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/create-payment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"create-payment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "Delivery Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"nabindhami14@gmail.com\",\n    \"password\":\"201347\",\n    \"salt\":\"mysalt\",\n    \"phone\":\"9840034689\",\n    \"firstName\":\"Nabin\",\n    \"lastName\":\"Dhami\",\n    \"address\":\"Darchula\",\n    \"pincode\":\"201347\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/delivery/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"delivery",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"nabindhami14@gmail.com\",\n    \"password\":\"201347\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/delivery/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"delivery",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2Zjg0MmY2MjRjMmEzOTZkZmI2NTciLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTY4MzQyMTM0MiwiZXhwIjoxNjgzNDI0OTQyfQ.ysghcKyMmCmqg-ALOrQzl2t3T33zULi7R12BuHtUhEE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/delivery/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"delivery",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery Edit Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2Zjg0MmY2MjRjMmEzOTZkZmI2NTciLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTY4MzQyMTM0MiwiZXhwIjoxNjgzNDI0OTQyfQ.ysghcKyMmCmqg-ALOrQzl2t3T33zULi7R12BuHtUhEE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Santosh\",\n    \"lastName\":\"Tiwari\",\n    \"address\":\"Gorkha\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/delivery/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"delivery",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery Change Service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU2Zjg0MmY2MjRjMmEzOTZkZmI2NTciLCJlbWFpbCI6Im5hYmluZGhhbWkxNEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTY4MzQyMTM0MiwiZXhwIjoxNjgzNDI0OTQyfQ.ysghcKyMmCmqg-ALOrQzl2t3T33zULi7R12BuHtUhEE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lat\":85.3240,\n    \"lng\":27.7172\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/delivery/change-status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"delivery",
+								"change-status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmIzMzc4M2JmMDRhZjBjYzkyMzMyNWMiLCJlbWFpbCI6ImNnQGdtYWlsLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2MTcyNzMxMDQsImV4cCI6MTYyNTA0OTEwNH0.ebQ_A49_ZB1cm8awOJiX5AFITHYXN6xw393SCv7-CUE",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
