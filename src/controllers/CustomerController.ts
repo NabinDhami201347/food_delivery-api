@@ -161,7 +161,13 @@ export const RequestOtp = async (req: Request, res: Response) => {
       profile.otp_expiry = expiry;
 
       await profile.save();
-      await onRequestOTP(otp, profile.phone);
+      const sendCode = await onRequestOTP(otp, profile.phone);
+
+      if (!sendCode) {
+        return res
+          .status(400)
+          .json({ message: "Failed to verify your phone number" });
+      }
 
       return res
         .status(200)
